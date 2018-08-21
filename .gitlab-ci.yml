@@ -13,7 +13,6 @@ build:
   stage: build
   script:
     - docker-compose pull
-    - apt-get install php-bcmath
 
 test:
   stage: test
