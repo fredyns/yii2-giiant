@@ -9,6 +9,7 @@ before_install:
   - git fetch --unshallow
   - cd tests
   - docker-compose build --pull
+  - apt-get install php-bcmath
 
 script:
   - make all
