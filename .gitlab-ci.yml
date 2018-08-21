@@ -13,7 +13,6 @@ build:
   stage: build
   script:
     - docker-compose pull
-    - docker-php-ext-install bcmath
 
 test:
   stage: test
@@ -23,6 +22,7 @@ test:
     # workaround (wait for db)
     - sleep 10
     - docker-compose run phpfpm setup.sh
+    - docker-php-ext-install bcmath
     - set +e
     - docker-compose run --rm -e YII_ENV=dev phpfpm bash -c 'codecept run --steps --html=_report.html -g mandatory -g ${GIIANT_TEST_DB} -g onlyCrud cli,unit,acceptance' || TESTS_EXIT_CODE=1
     - cp -r _output /tmp/${BUILD_PREFIX}
